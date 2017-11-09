@@ -1,0 +1,52 @@
+/*
+ * Firefox theme
+ * Made to work togeather with Firefox Developer theme
+ * f0x
+ * GPLv3
+ *
+/*
+
+:root {
+     --bg:  #282c37;
+     --bg2: #313644;
+     --fg:  #d9e1e8;
+}
+
+#TabsToolbar > *, #nav-bar > * {
+    background-color: var(--bg)
+}
+
+#urlbar,#searchbar .searchbar-textbox  {
+    background-color: var(--bg) !important;
+    color: var(--fg) !important;
+}
+
+.tabs-newtab-button,.tabs-newtab-button:hover {
+    background-color: var(--bg2);
+}
+
+.tabs-newtab-button:hover {
+    background-color: var(--bg2);
+}
+
+.tabbrowser-tab,.tab-background {
+    background-color: var(--bg);
+}
+
+.tabbrowser-tab:hover, .tab-background:hover {
+    background-color: var(--bg2);
+}
+
+.tab-background-start, .tab-background-end {
+    display: none;
+}
+
+tab[selected="true"] {
+    background: var(--bg2) !important;
+}
+
+#addon-bar,#PlacesToolbarItems,#TabsToolbar,#titlebar,#titlebar-content,#toolbar-menubar,#navigator-toolbox,#main-window,#PlacesToolbarItems,#personal-bookmarks{ 
+    background: var(--bg);
+}
+
+
