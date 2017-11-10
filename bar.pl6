@@ -22,6 +22,23 @@ sub battery() {
     return $output;
 }
 
+sub nowplaying() {
+    my $output = $accent ~ "" ~ "$fg";
+    my $playing = chomp QX "xdotool search --name 'Youtube' | tail -n1 | xargs xdotool getwindowname | sed 's/ - YouTube - Waterfox//' | sed 's/YouTube - Waterfox//'";
+    return $output ~ $playing;
+}
+
+sub wifi() {
+    my $output = $accent ~ "" ~ "$fg";
+    my @wifi_bssid = chomp QX "/sbin/iwlist wlp4s0 scanning | grep Address | rev | cut -d : -f 1-2 | rev | head -n1".split: "\n";
+    if @wifi_bssid.elems > 1 {
+        say @wifi_bssid.elems;
+        return;
+    }
+    my $bssid = @wifi_bssid[0];
+    return "$output$bssid ";
+}
+
 sub volume() {
     my $volume = chomp QX "pamixer --get-volume";
     my $muted = chomp(QX "pamixer --get-mute") eq "true";
@@ -38,22 +55,12 @@ sub clock() {
     return $output ~ $now;
 }
 
-sub wifi() {
-    my $output = $accent ~ "" ~ "$fg";
-    my @wifi_bssid = chomp QX "/sbin/iwlist wlp4s0 scanning | grep Address | rev | cut -d : -f 1-2 | rev | head -n1".split: "\n";
-    if @wifi_bssid.elems > 1 {
-        say @wifi_bssid.elems;
-        return;
-    }
-    my $bssid = @wifi_bssid[0];
-    return "$output$bssid ";
-}
-
 sub align($alignment) {
     return "%\{$alignment\}"
 }
 
 loop {
-    say " ", battery, align('c'), window_title, align('r'), wifi, volume, clock, " ";
+    #say " ", battery, nowplaying, align('c'), window_title, align('r'), wifi, volume, clock, " ";
+    say " ", nowplaying, align('c'), window_title, align('r'), battery, wifi, volume, clock, " ";
     sleep 0.2;
 }
