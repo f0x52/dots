@@ -8,6 +8,8 @@ hc() {
 
 hc emit_hook reload
 
+#xsetroot -solid '#5A8E3A'
+/home/f0x/.screenlayout/dual.sh
 feh --bg-fill ~/pictures/wallpapers/wallpaper
 
 # remove all existing keybindings
@@ -72,6 +74,24 @@ hc keybind $Mod-Control-Left    resize left +$resizestep
 hc keybind $Mod-Control-Down    resize down +$resizestep
 hc keybind $Mod-Control-Up      resize up +$resizestep
 hc keybind $Mod-Control-Right   resize right +$resizestep
+
+# tags
+#tag_names=( {1..9} )
+#tag_keys=( {1..9} 0 )
+
+#hc rename default "${tag_names[0]}" || true
+#for i in ${!tag_names[@]} ; do
+#    hc add "${tag_names[$i]}"
+#    key="${tag_keys[$i]}"
+#    if ! [ -z "$key" ] ; then
+#        hc keybind "$Mod-$key" use_index "$i"
+#        hc keybind "$Mod-Shift-$key" move_index "$i"
+#    fi
+#done
+
+# cycle through tags
+#hc keybind $Mod-period use_index +1 --skip-visible
+#hc keybind $Mod-comma  use_index -1 --skip-visible
 
 # tags
 mon1_names=( 1_{0..9} ) # tag names for monitor 1
@@ -163,7 +183,7 @@ hc set frame_border_active_color '#222222'
 hc set frame_border_normal_color '#101010'
 hc set frame_bg_normal_color '#565656'
 hc set frame_bg_active_color '#36647c'
-hc set frame_border_width 1
+hc set frame_border_width 0
 hc set always_show_frame 0
 hc set frame_bg_transparent 1
 hc set frame_transparent_width 1
@@ -207,16 +227,42 @@ hc unlock
 
 herbstclient set tree_style '╾│ ├└╼─┐'
 
+# do multi monitor setup here, e.g.:
+# hc set_monitors 1280x1024+0+0 1280x1024+1280+0
+# or simply:
 hc detect_monitors
+
+# find the panel
+#panel=~/.config/herbstluftwm/panel.sh
+#[ -x "$panel" ] || panel=/etc/xdg/herbstluftwm/panel.sh
+#for monitor in $(herbstclient list_monitors | cut -d: -f1) ; do
+#    # start it on each monitor
+#    "$panel" $monitor &
+#done
+
+#for monitor in $(herbstclient list_monitors | cut -d: -f1) ; do
+#    hc pad $monitor 32 10 10 10
+#done
+
 hc pad 0 42  5 5 5
+#hc pad 1 40 5 5 5
 
 # GIMP
+# ensure there is a gimp tag
 hc add gimp
+# center all other gimp windows on gimp tag
 hc rule class=Gimp tag=gimp
+#hc rule class=Gimp windowrole~'gimp-(image-window|toolbox|dock)' \
+#pseudotile=off
+#hc rule class=Gimp windowrole=gimp-toolbox focus=off index=00
+#hc rule class=Gimp windowrole=gimp-dock focus=off index=1
 hc keybind $Mod-g use gimp
 
 if hc silent new_attr bool my_not_first_autostart ; then
     xbindkeys -p &
-    ~/documents/prog/bar/bar.pl6 | lemonbar -p -B#282c37 -f 'peep-10' -f 'siji-15' -f 'unifont-16' -g 1910+5+5 -u 3 -o -3 &
+    #~/.config/herbstluftwm/lemons.sh | lemonbar -p -B#151617 -f 'peep-10' -f 'siji-15' -f 'unifont-16' -g 1910+5+5 -u 3 -o -3 | ~/.config/herbstluftwm/lemon_handle.sh &
+    #~/documents/prog/bar/bar.pl6 | lemonbar -p -B#282c37 -f 'peep-10' -f 'siji-15' -f 'unifont-16' -g 1910+5+5 -u 3 -o -3 &
+    rust_bar | lemonbar -B#091427 -f 'peep-10' -f 'siji-15' -f 'unifont-16' -g 1910+5+5 -u 3 -o -3
+    battery_loop.sh &
     waterfox &
 fi
