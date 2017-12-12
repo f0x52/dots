@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+echo "Last upgrade on:"
+tail -n1 ~/.upgradelog
+sudo aptitude update
+sudo aptitude upgrade
+
+echo $(date) >> ~/.upgradelog
+
