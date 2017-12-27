@@ -7,16 +7,20 @@ path+=("${HOME}/documents/src/rakudo-star-2017.07/install/share/perl6/site/bin")
 path+=("/opt/cross/bin")
 
 # enviroment
-export GOPATH=/home/f0x/documents/prog/go
+export GOPATH=${HOME}/documents/prog/go
 export TERM=screen
-export BROWSER=/home/f0x/.config/bin/waterfox
+export EDITOR=nvim
+export BROWSER=${HOME}/.config/bin/waterfox
 
 # aliases
 alias :q="exit"
 alias free="free -h"
 alias grep="grep --color"
 alias history="fc -l 1"
-alias ls="ls --color -F"
+alias irc="ssh -t vitreus screen -R"
+#alias ls="ls --color -F --group-directories-first"
+alias ls="exa --group-directories-first --color=always"
+alias l="exa --group-directories-first --color=always -l -a --git"
 alias mp3="youtube-dl --extract-audio --audio-format mp3"
 alias upload_w1r3="cat $1 | curl -F upload=@- https://w1r3.net"
 alias view="feh -Z -F"
@@ -36,7 +40,6 @@ bindkey '^[[1;5C' forward-word                        # [Ctrl-RightArrow] - move
 bindkey '^[[1;5D' backward-word                       # [Ctrl-LeftArrow] - move backward one word
 
 # theming
-#(wal -r &)
 eval "$(dircolors -b)"
 
 # completion
@@ -61,11 +64,11 @@ zle -N down-line-or-beginning-search
 setopt append_history
 setopt extended_history
 setopt hist_expire_dups_first
-setopt hist_ignore_dups # ignore duplication command history list
+setopt hist_ignore_dups
 setopt hist_ignore_space
 setopt hist_verify
 setopt inc_append_history
-setopt share_history # share command history data
+setopt share_history
 
 # prompt
-PROMPT='%a%F{1}[%c] %F{15}'
+PROMPT='%F{3}[] %a%F{1}%(!.root .)[%3c] %F{15}'

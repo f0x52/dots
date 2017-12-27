@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # set the colors
-fg=$'\e[35m'
-ac=$'\e[37m'
+fg=$'\e[37m'
+ac=$'\e[31m'
 re=$'\e[31m'
 
 # get os

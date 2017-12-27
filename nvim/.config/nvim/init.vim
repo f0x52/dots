@@ -31,15 +31,17 @@ if dein#load_state('/home/f0x/.dein')
   call dein#add('junegunn/fzf')
   call dein#add('junegunn/goyo.vim')
   call dein#add('itchyny/lightline.vim')
+  call dein#add('ying17zi/vim-live-latex-preview')
 
   " Syntax
   call dein#add('cespare/vim-toml')
   call dein#add('vim-perl/vim-perl6')
   call dein#add('bitc/vim-bad-whitespace')
+  "call dein#add('lervag/vimtex')
 
   " Colorschemes
-  " call dein#add('f0x52/vim-hybrid-material')
-  call dein#add('arcticicestudio/nord-vim')
+  call dein#add('chriskempson/base16-vim')
+  call dein#add('jrolfs/vim-base16-lightline')
 
   " You can specify revision/branch/tag.
   "call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
@@ -78,7 +80,7 @@ imap <PageDown> <End>
 let g:nord_comment_brightness = 20
 set noshowmode
 let g:lightline = {
-      \ 'colorscheme': 'nord',
+      \ 'colorscheme': 'base16',
       \ }
-colorscheme nord
+colorscheme base16-tomorrow-night
 

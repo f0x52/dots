@@ -1,30 +1,24 @@
 #!/usr/bin/env bash
 
-# this is a simple config for herbstluftwm
-
 hc() {
     herbstclient "$@"
 }
 
 hc emit_hook reload
 
-#xsetroot -solid '#5A8E3A'
-/home/f0x/.screenlayout/dual.sh
 feh --bg-fill ~/pictures/wallpapers/wallpaper
 
 # remove all existing keybindings
 hc keyunbind --all
 
 # keybindings
-# if you have a super key you will be much happier with Mod set to Mod4
-#Mod=Mod1    # Use alt as the main modifier
 Mod=Mod4   # Use the super key as the main modifier
 
 hc keybind $Mod-Shift-e quit
 hc keybind $Mod-Shift-r reload
 hc keybind $Mod-Shift-q close
-hc keybind $Mod-Return spawn ${TERMINAL:-st} # use your $TERMINAL with xterm as fallback
-hc keybind $Mod-d spawn dmenu_run -fn peep:size=10
+hc keybind $Mod-Return spawn ${TERMINAL:-st}
+hc keybind $Mod-d spawn dmenu_run -fn peep:size=10 #TODO: colors
 hc keybind $Mod-Shift-l spawn lock
 
 # basic movement
@@ -33,21 +27,8 @@ hc keybind $Mod-Left  focus left
 hc keybind $Mod-Down  focus down
 hc keybind $Mod-Up    focus up
 hc keybind $Mod-Right focus right
-hc keybind $Mod-h     focus left
-hc keybind $Mod-j     focus down
-hc keybind $Mod-k     focus up
-hc keybind $Mod-l     focus right
 
 # moving clients
-#hc keybind $Mod-Shift-Left  shift left
-#hc keybind $Mod-Shift-Down  shift down
-#hc keybind $Mod-Shift-Up    shift up
-#hc keybind $Mod-Shift-Right shift right
-#hc keybind $Mod-Shift-h     shift left
-#hc keybind $Mod-Shift-j     shift down
-#hc keybind $Mod-Shift-k     shift up
-#hc keybind $Mod-Shift-l     shift right
-
 hc keybind $Mod-Shift-Left or / shift left / \
     chain , lock , shift_to_monitor -l , focus_monitor -l , unlock
 hc keybind $Mod-Shift-Down or / shift down / \
@@ -61,57 +42,40 @@ hc keybind $Mod-Shift-Right or / shift right / \
 # create an empty frame at the specified direction
 hc keybind $Mod-u       split   bottom  0.5
 hc keybind $Mod-o       split   right   0.5
-# let the current frame explode into subframes
-hc keybind $Mod-Control-space split explode
 
 # resizing frames
 resizestep=0.05
-hc keybind $Mod-Control-h       resize left +$resizestep
-hc keybind $Mod-Control-j       resize down +$resizestep
-hc keybind $Mod-Control-k       resize up +$resizestep
-hc keybind $Mod-Control-l       resize right +$resizestep
 hc keybind $Mod-Control-Left    resize left +$resizestep
 hc keybind $Mod-Control-Down    resize down +$resizestep
 hc keybind $Mod-Control-Up      resize up +$resizestep
 hc keybind $Mod-Control-Right   resize right +$resizestep
 
 # tags
-#tag_names=( {1..9} )
-#tag_keys=( {1..9} 0 )
-
+#tag_names=( {1..9} 0)
+#tag_keys=( {1..9} 0)
+#
 #hc rename default "${tag_names[0]}" || true
 #for i in ${!tag_names[@]} ; do
 #    hc add "${tag_names[$i]}"
 #    key="${tag_keys[$i]}"
 #    if ! [ -z "$key" ] ; then
-#        hc keybind "$Mod-$key" use_index "$i"
-#        hc keybind "$Mod-Shift-$key" move_index "$i"
+#        hc keybind "$Mod-$key" use "$i"
+#        hc keybind "$Mod-Shift-$key" move "$i"
 #    fi
 #done
 
-# cycle through tags
-#hc keybind $Mod-period use_index +1 --skip-visible
-#hc keybind $Mod-comma  use_index -1 --skip-visible
-
 # tags
-mon1_names=( 1_{0..9} ) # tag names for monitor 1
-mon2_names=( 2_{0..9} ) # tag names for monitor 2
-fallback_names=( {0..9} ) # tag names for all other monitors
-tag_keys=( {1..9} 0 )
+mon1_names=( 0 {1..9}) # tag names for monitor 1
+mon2_names=( 2_0 2_{1..9} ) # tag names for monitor 2
+tag_keys=( 0 {1..9} )
 
 hc rename default "${mon1_names[0]}" || true
 for tag in "${mon1_names[@]}" "${mon2_names[@]}" "${fallback_names[@]}" ; do
     hc try silent add "$tag"
 done
 
-
 for i in ${!tag_keys[@]} ; do
     key="${tag_keys[$i]}"
-    # they kebinding is as follows: the or executes the commands seperated by
-    # CASE and stops executing them after the first of those succeeds.
-    # the first command is: check that we are on monitor 3 and can switch to tag "${mon1_names[$i]}"
-    # if only one of these to steps fail, try the second one (and so one).
-    # The setup for two monitors is as follows:
     hc keybind "$Mod-$key" \
         or CASE and . compare monitors.focus.index = 0 . use "${mon1_names[$i]}" \
            CASE and . compare monitors.focus.index = 1 . use "${mon2_names[$i]}" \
@@ -122,39 +86,11 @@ for i in ${!tag_keys[@]} ; do
            CASE move "${fallback_names[$i]}"
 done
 
-# cycle through tags
-# add additional information in order to cycle only through a monitor's tags
-# and not through all tags
-define-tag-cycle() {
-    local n=$#
-    local tags=( "$@" )
-    for i in "${!tags[@]}" ; do
-        local t="${tags[$i]}"
-        hc chain , new_attr string tags.by-name."$t".my_previous_tag \
-                 , set_attr tags.by-name."$t".my_previous_tag "${tags[$(((i - 1 + n) % n))]}" \
-                 , new_attr string tags.by-name."$t".my_next_tag \
-                 , set_attr tags.by-name."$t".my_next_tag "${tags[$(((i + 1) % n))]}"
-    done
-}
-
-define-tag-cycle "${mon1_names[@]}"
-define-tag-cycle "${mon2_names[@]}"
-define-tag-cycle "${fallback_names[@]}"
-
-# cycle through tags
-# check whether the current tag as a custom "next tag" configured
-# if yes, jump to that one, otherwise fall back to ordinary use_index +1
-hc keybind $Mod-period or , substitute NEXT tags.focus.my_next_tag use NEXT  \
-                          , use_index +1 --skip-visible
-hc keybind $Mod-comma  or , substitute PREV tags.focus.my_previous_tag use PREV  \
-                          , use_index +1 --skip-visible
-
-
 # layouting
 hc keybind $Mod-r remove
 hc keybind $Mod-s floating toggle
 hc keybind $Mod-f fullscreen toggle
-hc keybind $Mod-p pseudotile toggle
+#hc keybind $Mod-p pseudotile toggle
 # The following cycles through the available layouts within a frame, but skips
 # layouts, if the layout change wouldn't affect the actual window positions.
 # I.e. if there are two windows within a frame, the grid layout is skipped.
@@ -170,11 +106,9 @@ hc mousebind $Mod-Button2 zoom
 hc mousebind $Mod-Button3 resize
 
 # focus
-hc keybind $Mod-BackSpace   cycle_monitor
 hc keybind $Mod-Tab         cycle_all +1
 hc keybind $Mod-Shift-Tab   cycle_all -1
-hc keybind $Mod-c cycle
-hc keybind $Mod-i jumpto urgent
+#hc keybind $Mod-i jumpto urgent
 
 # theme
 hc attr theme.tiling.reset 1
@@ -186,7 +120,7 @@ hc set frame_bg_active_color '#36647c'
 hc set frame_border_width 0
 hc set always_show_frame 0
 hc set frame_bg_transparent 1
-hc set frame_transparent_width 1
+hc set frame_transparent_width 0
 hc set frame_gap 4
 
 hc attr theme.active.color '#67367c'
@@ -213,11 +147,7 @@ hc set update_dragged_clients 0
 
 # rules
 hc unrule -F
-#hc rule class=XTerm tag=3 # move all xterms to tag 3
 hc rule focus=on # normally focus new clients
-#hc rule focus=off # normally do not focus new clients
-# give focus to most common terminals
-#hc rule class~'(.*[Rr]xvt.*|.*[Tt]erm|Konsole)' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' pseudotile=on
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
@@ -225,44 +155,24 @@ hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 # unlock, just to be sure
 hc unlock
 
-herbstclient set tree_style '╾│ ├└╼─┐'
+#herbstclient set tree_style '╾│ ├└╼─┐'
+herbstclient set tree_style '        '
 
 # do multi monitor setup here, e.g.:
 # hc set_monitors 1280x1024+0+0 1280x1024+1280+0
 # or simply:
 hc detect_monitors
 
-# find the panel
-#panel=~/.config/herbstluftwm/panel.sh
-#[ -x "$panel" ] || panel=/etc/xdg/herbstluftwm/panel.sh
-#for monitor in $(herbstclient list_monitors | cut -d: -f1) ; do
-#    # start it on each monitor
-#    "$panel" $monitor &
-#done
-
-#for monitor in $(herbstclient list_monitors | cut -d: -f1) ; do
-#    hc pad $monitor 32 10 10 10
-#done
-
-hc pad 0 42  5 5 5
-#hc pad 1 40 5 5 5
+hc pad 0 45 5 5 5
 
 # GIMP
-# ensure there is a gimp tag
 hc add gimp
-# center all other gimp windows on gimp tag
 hc rule class=Gimp tag=gimp
-#hc rule class=Gimp windowrole~'gimp-(image-window|toolbox|dock)' \
-#pseudotile=off
-#hc rule class=Gimp windowrole=gimp-toolbox focus=off index=00
-#hc rule class=Gimp windowrole=gimp-dock focus=off index=1
 hc keybind $Mod-g use gimp
 
 if hc silent new_attr bool my_not_first_autostart ; then
     xbindkeys -p &
-    #~/.config/herbstluftwm/lemons.sh | lemonbar -p -B#151617 -f 'peep-10' -f 'siji-15' -f 'unifont-16' -g 1910+5+5 -u 3 -o -3 | ~/.config/herbstluftwm/lemon_handle.sh &
-    #~/documents/prog/bar/bar.pl6 | lemonbar -p -B#282c37 -f 'peep-10' -f 'siji-15' -f 'unifont-16' -g 1910+5+5 -u 3 -o -3 &
-    rust_bar | lemonbar -B#091427 -f 'peep-10' -f 'siji-15' -f 'unifont-16' -g 1910+5+5 -u 3 -o -3
+    rust_bar | lemonbar -B#1d1f21 -f 'peep-10' -f 'siji-15' -f 'unifont-16' -g 1910+5+5 -u 5 -o -3 &
     battery_loop.sh &
     waterfox &
 fi

@@ -8,7 +8,7 @@ echo "l $(date '+%Y-%m-%d %H:%M')" >> ~/.log/lock
 #    --ringvercolor=ffffffff --ringwrongcolor=ffffffff --indpos="x+941:y+465" \
 #    --radius=75 --veriftext="" --wrongtext=""
 
-~/.config/bin/i3lock -n -i ~/pictures/wallpapers/wallpaper_locked \
+i3lock -n -i ~/pictures/wallpapers/wallpaper_locked \
     --insidecolor=37344500 --ringcolor=ffffffff --line-uses-inside \
     --keyhlcolor=d23c3dff --bshlcolor=d23c3dff --separatorcolor=00000000 \
     --insidevercolor=ebcb8bff --insidewrongcolor=bf616aff \
