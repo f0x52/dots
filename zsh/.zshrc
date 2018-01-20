@@ -25,6 +25,7 @@ alias mp3="youtube-dl --extract-audio --audio-format mp3"
 alias upload_w1r3="cat $1 | curl -F upload=@- https://w1r3.net"
 alias view="feh -Z -F"
 alias view_pixel="feh --force-aliasing"
+alias highlighting='autossh vitreus_highlight "tail -f ~/.highlight 2> /dev/null" | while read line ; do echo "highlighted"; sudo glowy; done'
 
 # keys
 typeset -A key
@@ -71,4 +72,4 @@ setopt inc_append_history
 setopt share_history
 
 # prompt
-PROMPT='%F{3}[] %a%F{1}%(!.root .)[%3c] %F{15}'
+PROMPT='%F{6}[] %a%F{4}%(!.root .)[%3c] %F{15}'
