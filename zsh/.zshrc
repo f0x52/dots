@@ -26,6 +26,7 @@ alias upload_w1r3="cat $1 | curl -F upload=@- https://w1r3.net"
 alias view="feh -Z -F"
 alias view_pixel="feh --force-aliasing"
 alias highlighting='autossh vitreus_highlight "tail -f ~/.highlight 2> /dev/null" | while read line ; do echo "highlighted"; sudo glowy; done'
+alias record='ffmpeg -f pulse -ac 2 -i default -f x11grab -r 30 -s 1920x1080 -i :0.0 -codec:a pcm_s16le -codec:v libx264 -preset ultrafast -qp 0 '
 
 # keys
 typeset -A key
