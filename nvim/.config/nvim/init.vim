@@ -31,17 +31,19 @@ if dein#load_state('/home/f0x/.dein')
   call dein#add('junegunn/fzf')
   call dein#add('junegunn/goyo.vim')
   call dein#add('itchyny/lightline.vim')
-  call dein#add('ying17zi/vim-live-latex-preview')
+  "call dein#add('ying17zi/vim-live-latex-preview')
 
   " Syntax
   call dein#add('cespare/vim-toml')
   call dein#add('vim-perl/vim-perl6')
-  call dein#add('bitc/vim-bad-whitespace')
+  "call dein#add('bitc/vim-bad-whitespace')
   "call dein#add('lervag/vimtex')
 
   " Colorschemes
-  call dein#add('chriskempson/base16-vim')
-  call dein#add('jrolfs/vim-base16-lightline')
+  "call dein#add('chriskempson/base16-vim')
+  "call dein#add('jrolfs/vim-base16-lightline')
+  call dein#add('morhetz/gruvbox')
+  call dein#add('shinchu/lightline-gruvbox.vim')
 
   " You can specify revision/branch/tag.
   "call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
@@ -77,10 +79,13 @@ imap <PageDown> <End>
 
 "colorscheme hybrid_material
 "colorscheme hybrid_reverse
-let g:nord_comment_brightness = 20
+"let g:nord_comment_brightness = 20
+let g:gruvbox_contrast_dark = 'hard'
+
 set noshowmode
 let g:lightline = {
-      \ 'colorscheme': 'base16',
+      \ 'colorscheme': 'gruvbox',
       \ }
-colorscheme base16-tomorrow-night
+"colorscheme base16-tomorrow-night
+colorscheme gruvbox
 
