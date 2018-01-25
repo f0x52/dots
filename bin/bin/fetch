@@ -2,8 +2,8 @@
 
 # set the colors
 fg=$'\e[39m'
-ac=$'\e[34m'
-re=$'\e[36m'
+ac=$'\e[33m'
+re=$'\e[31m'
 
 # get os
 get_os() {

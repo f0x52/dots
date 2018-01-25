@@ -40,10 +40,10 @@ if dein#load_state('/home/f0x/.dein')
   "call dein#add('lervag/vimtex')
 
   " Colorschemes
-  "call dein#add('chriskempson/base16-vim')
-  "call dein#add('jrolfs/vim-base16-lightline')
-  call dein#add('morhetz/gruvbox')
-  call dein#add('shinchu/lightline-gruvbox.vim')
+  call dein#add('chriskempson/base16-vim')
+  call dein#add('jrolfs/vim-base16-lightline')
+  "call dein#add('morhetz/gruvbox')
+  "call dein#add('shinchu/lightline-gruvbox.vim')
 
   " You can specify revision/branch/tag.
   "call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
@@ -84,8 +84,8 @@ let g:gruvbox_contrast_dark = 'hard'
 
 set noshowmode
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
+      \ 'colorscheme': 'base16',
       \ }
-"colorscheme base16-tomorrow-night
-colorscheme gruvbox
+colorscheme base16-tomorrow-night
+"colorscheme gruvbox
 

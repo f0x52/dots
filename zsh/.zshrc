@@ -8,6 +8,7 @@ path+=("/opt/cross/bin")
 
 # enviroment
 export GOPATH=${HOME}/documents/prog/go
+export OCIO=${HOME}/documents/src/filmic-blender/config.ocio
 export TERM=screen
 export EDITOR=nvim
 export BROWSER=${HOME}/.config/bin/waterfox
@@ -74,4 +75,4 @@ setopt inc_append_history
 setopt share_history
 
 # prompt
-PROMPT='%F{6}[] %a%F{4}%(!.root .)[%3c] %F{15}'
+PROMPT='%F{1}[] %a%F{1}%(!.root .)[%3c] %F{15}'

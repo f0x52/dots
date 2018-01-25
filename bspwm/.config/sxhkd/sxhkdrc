@@ -13,12 +13,20 @@ super + shift + Return
 super + d
 	dmenu_run -fn peep:size=10
 
+# perl6 floating (calculator)
+super + backslash
+    select_st perl6
+
 # lockscreen
 super + l
     lock
 
 super + shift + l
     lock
+
+# hide/show bar
+super + z
+    pkill -x rust_bar || rust_bar | lemonbar -B#191a1c -f 'peep-10' -f 'siji-15' -f 'unifont-16' -g 1910+5+5 -u 5 -o -3 -d
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -37,7 +45,7 @@ super + shift + r
 
 # close and kill
 super + shift + q
-	bspc node -{c,k}
+	bspc node -c
 
 # alternate between the tiled and monocle layout
 super + m
