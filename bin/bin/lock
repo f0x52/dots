@@ -27,5 +27,5 @@ echo "l $(date '+%Y-%m-%d %H:%M')" >> ~/.log/lock
     --keyhlcolor=d23c3dff --bshlcolor=d23c3dff --separatorcolor=00000000 \
     --insidevercolor=f0c674ff --insidewrongcolor=bf616aff \
     --ringvercolor=ffffffff --ringwrongcolor=ffffffff \
-    --radius=50 --veriftext="" --wrongtext="" --indpos="x+70:y+1010"
+    --radius=50 --veriftext="" --wrongtext="" --indpos="x+1850:y+1010"
 echo "u $(date '+%Y-%m-%d %H:%M')" >> ~/.log/lock

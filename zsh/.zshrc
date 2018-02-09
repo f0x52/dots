@@ -1,34 +1,17 @@
+source .localzsh
 # export vars
 typeset -U path
 path+=("${HOME}/bin")
-path+=("${HOME}/.cargo/bin")
-path+=("${HOME}/documents/src/rakudo-star-2017.07/install/bin/")
-path+=("${HOME}/documents/src/rakudo-star-2017.07/install/share/perl6/site/bin")
-path+=("/opt/cross/bin")
 
 # enviroment
-export GOPATH=${HOME}/documents/prog/go
-export OCIO=${HOME}/documents/src/filmic-blender/config.ocio
-export TERM=screen
-export EDITOR=nvim
-export BROWSER=${HOME}/.config/bin/waterfox
+export EDITOR="st -e nvim"
 
 # aliases
 alias :q="exit"
 alias free="free -h"
 alias grep="grep --color"
 alias history="fc -l 1"
-alias irc="ssh -t vitreus screen -R"
 #alias ls="ls --color -F --group-directories-first"
-alias ls="exa --group-directories-first --color=always"
-alias l="exa --group-directories-first --color=always -l -a --git"
-alias mp3="youtube-dl --extract-audio --audio-format mp3"
-alias upload_w1r3="cat $1 | curl -F upload=@- https://w1r3.net"
-alias view="feh -Z -F"
-alias view_pixel="feh --force-aliasing"
-alias highlighting='autossh vitreus_highlight "tail -f ~/.highlight 2> /dev/null" | while read line ; do echo "highlighted"; sudo glowy; done'
-alias record='ffmpeg -f pulse -ac 2 -i default -f x11grab -r 30 -s 1920x1080 -i :0.0 -codec:a pcm_s16le -codec:v libx264 -preset ultrafast -qp 0 '
-alias webserve="python3 -m http.server"
 
 # keys
 typeset -A key
@@ -74,5 +57,3 @@ setopt hist_verify
 setopt inc_append_history
 setopt share_history
 
-# prompt
-PROMPT='%F{1}[] %a%F{1}%(!.root .)[%3c] %F{15}'

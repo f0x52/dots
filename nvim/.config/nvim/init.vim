@@ -30,12 +30,14 @@ if dein#load_state('/home/f0x/.dein')
   call dein#add('jlanzarotta/bufexplorer')
   call dein#add('junegunn/fzf')
   call dein#add('junegunn/goyo.vim')
+  call dein#add('junegunn/limelight.vim')
   call dein#add('itchyny/lightline.vim')
   "call dein#add('ying17zi/vim-live-latex-preview')
 
   " Syntax
   call dein#add('cespare/vim-toml')
   call dein#add('vim-perl/vim-perl6')
+  call dein#add('fatih/vim-go')
   "call dein#add('bitc/vim-bad-whitespace')
   "call dein#add('lervag/vimtex')
 
@@ -81,11 +83,12 @@ imap <PageDown> <End>
 "colorscheme hybrid_reverse
 "let g:nord_comment_brightness = 20
 let g:gruvbox_contrast_dark = 'hard'
+let g:goyo_width = '80%'
 
 set noshowmode
 let g:lightline = {
       \ 'colorscheme': 'base16',
       \ }
-colorscheme base16-tomorrow-night
+colorscheme base16-ocean
 "colorscheme gruvbox
 

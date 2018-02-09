@@ -1,6 +1,5 @@
 #! /bin/sh
 
-sxhkd &
 xsetroot -cursor_name left_ptr
 
 bspc monitor -d 1 2 3 4 5 6 7 8 9 10
@@ -24,6 +23,7 @@ bspc rule -a Telegram desktop='^2'
 feh --bg-fill ~/pictures/wallpapers/wallpaper
 
 if [ "$1" != "restart" ]; then
+    sxhkd &
     waterfox &
     youtube &
     telegram &
