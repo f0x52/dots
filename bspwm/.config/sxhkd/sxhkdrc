@@ -26,8 +26,8 @@ super + shift + l
 
 # hide/show bar
 #pkill -x rust_bar || rust_bar | lemonbar -B#191a1c -f 'peep-10' -f 'siji-15' -f 'unifont-10' -f 'non_existing-16' -g 1910+5+5 -u 5 -o -3 -d
-super + z
-    pkill -x rust_bar || bar
+#super + z
+#    pkill -x rust_bar || bar
     #pkill -x rust_bar || rust_bar | lemonbar -B#1b1d1f -f 'peep-10' -f 'siji-15' -f 'unifont-10' -f 'non_existing-16' -g 1920x32 -u 5 -o -3 -d
 # make sxhkd reload its configuration files:
 super + Escape

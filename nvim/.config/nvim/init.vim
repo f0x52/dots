@@ -77,6 +77,9 @@ set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr
 imap <PageUp> <Home>
 imap <PageDown> <End>
 
+map <M-Left> :bp 
+map <M-Right> :bn 
+
 "tnoremap <Esc> <C-\><C-n>
 
 "colorscheme hybrid_material
@@ -89,6 +92,12 @@ set noshowmode
 let g:lightline = {
       \ 'colorscheme': 'base16',
       \ }
+function! s:goyo_leave()
+    q
+endfunction
+
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
 colorscheme base16-ocean
 "colorscheme gruvbox
 

@@ -27,7 +27,8 @@ if [ "$1" != "restart" ]; then
     waterfox &
     youtube &
     telegram &
-    rust_bar | lemonbar -B#151412 -f 'peep-10' -f 'siji-15' -f 'unifont-16' -g 1910+5+5 -u 5 -o -3 &
+    bar &
+    xdo above -t $(xdo id -n root) $(xdo id -n lemonbar)
     xbindkeys -p &
 fi
 
