@@ -1,1 +1,6 @@
-curl -F upload=@- https://w1r3.net
+#!/usr/bin/env bash
+
+echo "uploading $1"
+md5=$(md5sum $1 | cut -f1 -d" " | sed s/=//)
+scp -q $1 "akropolis:/var/www/f.0x52.eu/media/_$md5$1"
+echo "https://f.0x52.eu/media/_$md5$1"
