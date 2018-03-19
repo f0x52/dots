@@ -38,6 +38,8 @@ if dein#load_state('/home/f0x/.dein')
   call dein#add('cespare/vim-toml')
   call dein#add('vim-perl/vim-perl6')
   call dein#add('fatih/vim-go')
+  call dein#add('pangloss/vim-javascript')
+  call dein#add('mxw/vim-jsx')
   "call dein#add('bitc/vim-bad-whitespace')
   "call dein#add('lervag/vimtex')
 
@@ -99,5 +101,4 @@ endfunction
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 colorscheme base16-ocean
-"colorscheme gruvbox
 

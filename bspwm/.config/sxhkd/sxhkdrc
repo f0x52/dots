@@ -11,7 +11,8 @@ super + shift + Return
 
 # program launcher
 super + d
-	dmenu_run -fn peep:size=10
+    dmenu_run -fn peep:size=14 -nf \#9b5aa9 -nb \#100911 -sf \#100911 -sb \#9b5aa9
+	#dmenu_run -fn peep:size=10
 
 # perl6 floating (calculator)
 super + backslash
