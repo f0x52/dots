@@ -88,6 +88,23 @@ static unsigned int tabspaces = 4;
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 
+     "#282a2e",
+    "#a54242",
+    "#8c9440",
+    "#d18a2e",
+    "#5f819d",
+    "#85678f",
+    "#5e8d87",
+    "#9b5aa9",
+    "#373b41",
+    "#cc6666",
+    "#b5bd68",
+    "#f0c674",
+    "#81a2be",
+    "#b294bb",
+    "#8abeb7",
+    "#c5c8c6",
+
     "#282a2e",
     "#9b5aa9",
     "#ba58ae",
@@ -146,7 +163,8 @@ static const char *colorname[] = {
     //"#1d1f21", //material light
     //"#191a1c", //material, bit darker
     //"#2b303b", // base16-ocean
-    "#2a2836", //cyb
+    //"#2a2836", //cyb
+    "#1c1c1c", // grey
 
     //"#151412",
     //"#d9e1e8",
