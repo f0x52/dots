@@ -29,6 +29,7 @@ if [ "$1" != "restart" ]; then
     telegram &
     bar &
     xdo above -t $(xdo id -n root) $(xdo id -n lemonbar)
+    battery_loop.sh &
     xbindkeys -p &
 fi
 
