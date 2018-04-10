@@ -40,12 +40,14 @@ if dein#load_state('/home/f0x/.dein')
   call dein#add('fatih/vim-go')
   call dein#add('pangloss/vim-javascript')
   call dein#add('mxw/vim-jsx')
+  call dein#add('lervag/vimtex')
   "call dein#add('bitc/vim-bad-whitespace')
   "call dein#add('lervag/vimtex')
 
   " Colorschemes
   call dein#add('chriskempson/base16-vim')
   call dein#add('jrolfs/vim-base16-lightline')
+  call dein#add('kristijanhusak/vim-hybrid-material')
   "call dein#add('morhetz/gruvbox')
   "call dein#add('shinchu/lightline-gruvbox.vim')
 
@@ -70,8 +72,8 @@ endif
 
 set background=dark
 set number
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 set termguicolors
 set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
@@ -89,6 +91,7 @@ map <M-Right> :bn
 "let g:nord_comment_brightness = 20
 let g:gruvbox_contrast_dark = 'hard'
 let g:goyo_width = '80%'
+let g:latex_view_general_viewer = 'zathura'
 
 set noshowmode
 let g:lightline = {
@@ -100,5 +103,5 @@ endfunction
 
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
-colorscheme base16-ocean
-
+"colorscheme base16-ocean
+colorscheme hybrid_reverse
