@@ -1,6 +1,7 @@
 #! /bin/sh
 
 xsetroot -cursor_name left_ptr
+xset r rate 250 50
 
 bspc monitor -d 1 2 3 4 5 6 7 8 9 10
 
@@ -17,19 +18,18 @@ bspc config gapless_monocle       false
 bspc config focus_follows_pointer true
 
 
-bspc rule -a Waterfox desktop='^1'
 bspc rule -a Chromium desktop='^1'
 bspc rule -a Telegram desktop='^2'
 feh --bg-fill ~/pictures/wallpapers/wallpaper
 
 if [ "$1" != "restart" ]; then
     sxhkd &
-    waterfox &
+    firefox &
     youtube &
     telegram &
     bar &
     xdo above -t $(xdo id -n root) $(xdo id -n lemonbar)
-    battery_loop.sh &
+    compton --config .config/compton.conf &
     xbindkeys -p &
 fi
 

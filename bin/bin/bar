@@ -1,1 +1,2 @@
-rust_bar | lemonbar -B#f51d1f21 -f 'peep-10' -f 'siji-15' -f 'unifont-10' -f 'non_existing-16' -g 1920x32 -u 5 -o -3 
+#rust_bar | lemonbar -B#f5221b23 -f 'peep-10' -f 'siji-15' -f 'unifont-10' -f 'non_existing-16' -g 1920x32 -u 5 -o -3 
+rust_bar | lemonbar -B#f5242424 -f 'peep-10' -f 'siji-15' -f 'unifont-10' -f 'non_existing-16' -g 1920x32 -u 5 -o -3 

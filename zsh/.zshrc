@@ -1,10 +1,11 @@
-source .localzsh
+source ~/.localzsh
 # export vars
 typeset -U path
 path+=("${HOME}/bin")
 
 # enviroment
-export EDITOR="st -e nvim"
+#export EDITOR="st -e nvim"
+export EDITOR="nvim"
 
 # aliases
 alias :q="exit"

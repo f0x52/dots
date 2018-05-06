@@ -177,7 +177,8 @@ static const char *colorname[] = {
 
     [255] = 0,
     //"#110e0e",
-    "#1d1f21", //material light
+    "#1f1f1f",
+    //"#1d1f21", //material light
     //"#191a1c", //material, bit darker
     //"#2b303b", // base16-ocean
     //"#2a2836", //cyb

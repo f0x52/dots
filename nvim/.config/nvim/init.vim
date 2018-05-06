@@ -41,6 +41,8 @@ if dein#load_state('/home/f0x/.dein')
   call dein#add('pangloss/vim-javascript')
   call dein#add('mxw/vim-jsx')
   call dein#add('lervag/vimtex')
+
+  call dein#add('neomake/neomake')
   "call dein#add('bitc/vim-bad-whitespace')
   "call dein#add('lervag/vimtex')
 
@@ -78,6 +80,10 @@ set expandtab
 set termguicolors
 set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
 
+
+set textwidth=80
+set colorcolumn=+1
+
 imap <PageUp> <Home>
 imap <PageDown> <End>
 
@@ -92,6 +98,18 @@ map <M-Right> :bn
 let g:gruvbox_contrast_dark = 'hard'
 let g:goyo_width = '80%'
 let g:latex_view_general_viewer = 'zathura'
+let g:neomake_javascript_enabled_makers = ['eslint']
+
+nmap <Leader><Space>o :lopen<CR>      " open location window
+nmap <Leader><Space>c :lclose<CR>     " close location window
+nmap <Leader><Space>, :ll<CR>         " go to current error/warning
+nmap <Leader><Space>n :lnext<CR>      " next error/warning
+nmap <Leader><Space>p :lprev<CR>      " previous error/warning
+
+" When writing a buffer (no delay).
+call neomake#configure#automake('w')
+" When writing a buffer (no delay), and on normal mode changes (after 750ms).
+call neomake#configure#automake('nw', 750)
 
 set noshowmode
 let g:lightline = {
