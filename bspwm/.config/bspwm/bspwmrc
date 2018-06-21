@@ -17,9 +17,6 @@ bspc config borderless_monocle    true
 bspc config gapless_monocle       false
 bspc config focus_follows_pointer true
 
-
-bspc rule -a Chromium desktop='^1'
-bspc rule -a Telegram desktop='^2'
 feh --bg-fill ~/pictures/wallpapers/wallpaper
 
 if [ "$1" != "restart" ]; then
@@ -32,5 +29,3 @@ if [ "$1" != "restart" ]; then
     compton --config .config/compton.conf &
     xbindkeys -p &
 fi
-
-bspc rule -a Gimp state=floating follow=on

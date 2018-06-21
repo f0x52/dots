@@ -82,7 +82,7 @@ set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr
 
 
 set textwidth=80
-set colorcolumn=+1
+"set colorcolumn=+1
 
 imap <PageUp> <Home>
 imap <PageDown> <End>
@@ -109,7 +109,7 @@ nmap <Leader><Space>p :lprev<CR>      " previous error/warning
 " When writing a buffer (no delay).
 call neomake#configure#automake('w')
 " When writing a buffer (no delay), and on normal mode changes (after 750ms).
-call neomake#configure#automake('nw', 750)
+call neomake#configure#automake('nw', 450)
 
 set noshowmode
 let g:lightline = {

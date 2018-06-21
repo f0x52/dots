@@ -6,6 +6,7 @@ path+=("${HOME}/bin")
 # enviroment
 #export EDITOR="st -e nvim"
 export EDITOR="nvim"
+export ANSIBLE_NOCOWS=1
 
 # aliases
 alias :q="exit"
